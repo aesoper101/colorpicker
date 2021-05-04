@@ -1,0 +1,43 @@
+{
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "private": false,
+  "main": "{{componentName}}.es.js",
+  "module": "{{componentName}}.es.js",
+  "types": "packages/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  {{#with repository}}
+  "repository": {
+    "type": "{{type}}",
+    "url": "{{url}}"
+  },
+  {{/with}}
+  {{#if keywords}}
+  "keywords": [
+    {{#each keywords}}
+    "{{.}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  {{/if}}
+  {{#if author}}
+  "author": "{{author}}",
+  {{/if}}
+  {{#if license}}
+  "license": "{{license}}",
+  {{/if}}
+  {{#with bugs}}
+  "bugs": {
+    "url": "{{url}}"
+  },
+  {{/with}}
+  {{#if homepage}}
+  "homepage": "{{homepage}}",
+  {{/if}}
+  "dependencies": {
+  {{#each dependencies}}
+    "{{@key}}": "{{.}}"{{#unless @last}},{{/unless}}
+  {{/each}}
+  }
+}
