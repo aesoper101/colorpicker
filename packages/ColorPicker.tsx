@@ -1,4 +1,13 @@
-import { computed, defineComponent, PropType, reactive, ref, watch } from "vue";
+import {
+  computed,
+  defineComponent,
+  h,
+  PropType,
+  reactive,
+  ref,
+  Teleport,
+  watch,
+} from "vue";
 
 import SingleColorPicker, { SingleColorPickerProps } from "./SingleColorPicker";
 import GradientColorPicker, {
@@ -62,6 +71,10 @@ export default defineComponent({
     placement: {
       type: String as PropType<Placement>,
       default: "auto",
+    },
+    zIndex: {
+      type: Number,
+      default: 10000,
     },
   },
   emits: ["update:single", "update:gradient", "change"],
@@ -262,6 +275,21 @@ export default defineComponent({
       }
     };
 
+    const renderTeleport = () => {
+      const teleportBody = (
+        <div
+          class="vc-popup"
+          style={{ zIndex: props.zIndex }}
+          ref={pickerPopupRef}
+          v-custom-click-away={onHidePopup}
+        >
+          {showPopup.value && renderPicker()}
+        </div>
+      );
+
+      return h(Teleport, { to: "body" }, [teleportBody]);
+    };
+
     const renderPopup = () => {
       return (
         <>
@@ -278,9 +306,7 @@ export default defineComponent({
             <div class="vc-current-color__inner" style={getBgColor.value}></div>
           </div>
 
-          <div ref={pickerPopupRef} v-custom-click-away={onHidePopup}>
-            {showPopup.value && renderPicker()}
-          </div>
+          {renderTeleport()}
         </>
       );
     };

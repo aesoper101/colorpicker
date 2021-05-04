@@ -10,9 +10,11 @@
   background-color: white;
   width: 276px;
   padding-bottom: 10px;
+  z-index: 10000;
 
   * {
     outline: none;
+    line-height: 1;
   }
 
   &--container {
