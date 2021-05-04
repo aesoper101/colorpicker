@@ -5,6 +5,12 @@
       v-model:gradient="state.gradient"
       use-as-popup
       popup-shape="round"
+      placement="left"
+      @change="onChange"
+    />
+    <ColorPicker
+      use-as-popup
+      popup-shape="round"
       placement="right"
       @change="onChange"
     />
@@ -12,6 +18,7 @@
       use-as-popup
       popup-shape="round"
       placement="right"
+      opacity-disabled
       @change="onChange"
     />
     <div>single:{{ state.single }}</div>

@@ -20,7 +20,7 @@ const vars = { ...devPkg, componentName: "colorpicker" };
 
 const responses = {
   update: false,
-  version: "",
+  version: devPkg.version,
   npmName: "",
   componentName: "",
 };

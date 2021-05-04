@@ -21,8 +21,8 @@ import { Placement } from "@popperjs/core/lib/enums";
 
 export interface ColorPickerChangeEvent {
   isGradient: boolean;
-  single?: GradientColorPickerProps;
-  gradient?: SingleColorPickerProps;
+  single?: SingleColorPickerProps;
+  gradient?: GradientColorPickerProps;
 }
 
 export type ColorPickerStyle = "single" | "gradient" | "both";
@@ -76,6 +76,7 @@ export default defineComponent({
       type: Number,
       default: 10000,
     },
+    opacityDisabled: Boolean,
   },
   emits: ["update:single", "update:gradient", "change"],
   setup(props, { emit }) {
@@ -113,7 +114,6 @@ export default defineComponent({
     };
 
     const getBgColor = computed(() => {
-      // const { gradient: gradientData, single: singleData } = colorData;
       const gradientData = colorData.gradient;
       const singleData = colorData.single;
       if (isGradientActive.value) {
@@ -127,9 +127,14 @@ export default defineComponent({
           backgroundImage: `linear-gradient(${gradientData.degree}deg, ${startColor} ${gradientData.startColorLeft}%, ${endColor} ${gradientData.endColorLeft}%,  rgb(0, 0, 0) 100%)`,
         };
       }
+
+      const opacity =
+        singleData && singleData.opacity
+          ? singleData.opacity / 100
+          : singleData.opacity;
       return {
         background: singleData.color,
-        opacity: singleData.opacity,
+        opacity: opacity,
       };
     });
 
@@ -196,6 +201,7 @@ export default defineComponent({
       if (props.useStyle !== "single") {
         return (
           <GradientColorPicker
+            opacityDisabled={props.opacityDisabled}
             onModeChange={onModeChange}
             onChange={onGradientPickerChange}
             {...colorData.gradient}
@@ -208,6 +214,7 @@ export default defineComponent({
       if (props.useStyle !== "gradient") {
         return (
           <SingleColorPicker
+            opacityDisabled={props.opacityDisabled}
             onModeChange={onModeChange}
             onChange={onSinglePickerChange}
             {...colorData.single}
@@ -301,6 +308,7 @@ export default defineComponent({
             ref={pickerRef}
             class={[
               "vc-current-color",
+              "vc-transparent",
               {
                 round: props.popupShape === "round",
               },

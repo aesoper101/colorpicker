@@ -12,6 +12,7 @@ export default defineComponent({
       type: Number,
       default: 0,
     },
+    opacityDisabled: Boolean,
   },
   emits: ["update:color", "update:opacity", "opacityChange", "colorChange"],
   setup(props, { emit }) {
@@ -89,13 +90,16 @@ export default defineComponent({
           <div class="vc-color-input">
             <input value={currentColorHex.value} onBlur={(v) => onHexBlur(v)} />
           </div>
-          <div class="vc-alpha-input">
-            <input
-              class="vc-alpha-input__inner"
-              value={currentData.opacity + "%"}
-              onBlur={(v) => onAlphaBlur(v)}
-            />
-          </div>
+
+          {!props.opacityDisabled && (
+            <div class="vc-alpha-input">
+              <input
+                class="vc-alpha-input__inner"
+                value={currentData.opacity + "%"}
+                onBlur={(v) => onAlphaBlur(v)}
+              />
+            </div>
+          )}
         </div>
       );
     };

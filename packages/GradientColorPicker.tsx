@@ -59,6 +59,7 @@ const gradientColorPickerProps = {
     type: Number,
     default: 100,
   },
+  opacityDisabled: Boolean,
 };
 
 export type GradientColorPickerProps = Partial<
@@ -407,12 +408,16 @@ export default defineComponent({
             />
           )}
           <Hue hue={getHue.value} onChange={onHueChange} />
-          <Opacity
-            opacity={getOpacity.value}
-            color={getColor.value}
-            onChange={onUpdateOpacity}
-          />
+
+          {!props.opacityDisabled && (
+            <Opacity
+              opacity={getOpacity.value}
+              color={getColor.value}
+              onChange={onUpdateOpacity}
+            />
+          )}
           <Display
+            opacityDisabled={props.opacityDisabled}
             color={getColor.value}
             opacity={getOpacity.value}
             onColorChange={(color) => updateColor(color)}

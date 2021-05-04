@@ -19,6 +19,7 @@ const singleColorPickerProps = {
     type: Number,
     default: 100,
   },
+  opacityDisabled: Boolean,
 };
 
 export type SingleColorPickerProps = Partial<
@@ -117,12 +118,16 @@ export default defineComponent({
             onChange={onSaturationChange}
           />
           <Hue hue={getHue.value} onChange={onHueChange} />
-          <Opacity
-            color={colorData.color}
-            opacity={colorData.opacity}
-            onChange={updateOpacity}
-          />
+
+          {!props.opacityDisabled && (
+            <Opacity
+              color={colorData.color}
+              opacity={colorData.opacity}
+              onChange={updateOpacity}
+            />
+          )}
           <Display
+            opacityDisabled={props.opacityDisabled}
             color={colorData.color}
             opacity={colorData.opacity}
             onColorChange={updateColor}
