@@ -95,6 +95,7 @@ export default defineComponent({
     };
 
     const onGradientPickerChange = (data: GradientColorPickerProps) => {
+      colorData.gradient = data;
       emit("update:gradient", data);
       emit("change", {
         isGradient: true,
@@ -103,6 +104,7 @@ export default defineComponent({
     };
 
     const onSinglePickerChange = (data: SingleColorPickerProps) => {
+      colorData.single = data;
       emit("update:single", data);
       emit("change", {
         isGradient: false,
@@ -111,7 +113,9 @@ export default defineComponent({
     };
 
     const getBgColor = computed(() => {
-      const { gradient: gradientData, single: singleData } = colorData;
+      // const { gradient: gradientData, single: singleData } = colorData;
+      const gradientData = colorData.gradient;
+      const singleData = colorData.single;
       if (isGradientActive.value) {
         const startColor = tinycolor(gradientData.startColor)
           .setAlpha((gradientData.startColorOpacity || 100) / 100)

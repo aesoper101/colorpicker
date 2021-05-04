@@ -8,6 +8,12 @@
       placement="right"
       @change="onChange"
     />
+    <ColorPicker
+      use-as-popup
+      popup-shape="round"
+      placement="right"
+      @change="onChange"
+    />
     <div>single:{{ state.single }}</div>
     <div>gradient:{{ state.gradient }}</div>
   </div>

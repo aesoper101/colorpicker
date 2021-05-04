@@ -1,6 +1,6 @@
 {
   "name": "vue3-colorpicker-pro",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "main": "dist/colorpicker.es.js",
   "module": "dist/colorpicker.es.js",
@@ -31,7 +31,8 @@
     "pub": "cd dist && npm publish --registry=http://registry.npmjs.org --access public && cd ..",
     "unpub": "npm unpublish vue3-colorpicker-pro --force --registry=http://registry.npmjs.org",
     "deploy": "rimraf dist && yarn build && gh-pages -d dist",
-    "pre": "cd dist && yarn link && cd .. && yarn link vue3-colorpicker-pro"
+    "pre": "cd dist && yarn link && cd .. && yarn link vue3-colorpicker-pro",
+    "build:version": "node build/gen-version.js"
   },
   "dependencies": {
     "@aesoper/normal-utils": "^0.1.5",
@@ -67,11 +68,13 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "cross-env": "^7.0.3",
+    "ejs": "^3.1.6",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
     "fs-extra": "^9.1.0",
     "gh-pages": "^3.1.0",
+    "handlebars": "^4.7.7",
     "minimist": "^1.2.5",
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
@@ -85,6 +88,10 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "rollup-plugin-vue": "^6.0.0",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "prompts": "^2.4.1",
+    "chalk": "^4.1.1",
+    "compare-versions": "^3.6.0",
+    "update-check": "^1.5.4"
   }
 }
