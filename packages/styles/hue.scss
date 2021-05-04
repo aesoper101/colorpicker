@@ -1,0 +1,34 @@
+.vc-hue {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 14px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
+
+  &-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMkAAAAdCAYAAAAAaUg8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAKtJREFUeNrs09EKgjAUgOGzEFfv/7CVBceiLiJiLnf7fSAbDoUj/iWnyKgRcXxf9Wtt7Vvntf8854jLY3uN19qzf67nH/e2nmmdZ8xjg2x+sI533qf9g4wM/3GvLPumOHVMWf/4SiWWsUG6/6bG+/NWDgE0iQREAiIBkYBIQCQgEhAJiAQQCYgERAIiAZGASEAkIBJAJCASEAmIBEQCIgGRgEgAkYBIYNAqwAD5oWo3bpsiKwAAAABJRU5ErkJggg==);
+    background-size: 100%;
+  }
+
+  &-pointer {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+  }
+
+  &-picker {
+    width: 14px;
+    height: 14px;
+    border-radius: 6px;
+    transform: translate(-7px, -2px);
+    background-color: #f8f8f8;
+    margin-top: 2px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    cursor: pointer;
+  }
+}

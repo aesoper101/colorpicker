@@ -1,0 +1,90 @@
+.vc-colorpicker {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: white;
+  width: 276px;
+  padding-bottom: 10px;
+
+  * {
+    outline: none;
+  }
+
+  &--container {
+    padding: 16px;
+  }
+
+  &--tabs {
+    padding: 2px;
+    background: #f6f7f9;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 12px;
+
+    &__inner {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      padding: 0;
+      background: #f6f7f9;
+      border-bottom: none;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    &__btn {
+      -ms-flex: 1;
+      flex: 1;
+      z-index: 2;
+      color: #636c78;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &.vc-btn-active {
+        color: #33383e;
+        font-weight: 600;
+      }
+
+
+      button {
+        width: 100%;
+        background-color: initial;
+        padding: 6px 0;
+        font-size: 14px;
+        line-height: 20px;
+        color: #636c78;
+        border: 0;
+        border-radius: 0;
+        outline: 0;
+        cursor: pointer;
+        -webkit-appearance: none;
+        font-weight: inherit;
+
+
+        .vc-btn__content {
+          position: relative;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    &__bg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+      z-index: 1;
+      transition: left .2s ease-in-out;
+    }
+  }
+
+}

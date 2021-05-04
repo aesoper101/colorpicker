@@ -1,0 +1,46 @@
+.vc-saturation {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 140px;
+  border-radius: 4px;
+
+  &-container {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  &__white,
+  &__black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+  }
+
+  &__black {
+    background: linear-gradient(0deg, #000, transparent);
+  }
+
+  &__white {
+    background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
+  }
+
+  &__pointer {
+    position: absolute;
+
+    div {
+      transform: translate(-5px, -5px);
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+      width: 10px;
+      height: 10px;
+      border: 1px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}

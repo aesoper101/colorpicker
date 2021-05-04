@@ -1,0 +1,15 @@
+@import "var";
+@import "alpha";
+@import "hue";
+@import "saturation";
+@import "compact";
+@import "picker";
+@import "gradient";
+@import "single";
+@import "display";
+@import "popup";
+
+.vc-transparent {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  background-repeat: repeat;
+}
