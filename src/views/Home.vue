@@ -16,7 +16,10 @@
     />
     <ColorPicker
       use-as-popup
+      v-model:gradient="state.gradient"
+      active-type="gradient"
       popup-shape="round"
+      use-style="gradient"
       placement="right"
       opacity-disabled
       @change="onChange"

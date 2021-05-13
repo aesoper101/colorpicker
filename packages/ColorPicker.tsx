@@ -27,6 +27,8 @@ export interface ColorPickerChangeEvent {
 
 export type ColorPickerStyle = "single" | "gradient" | "both";
 
+export type ColorPickerType = "single" | "gradient";
+
 export type PopupShape = "round" | "square";
 
 export default defineComponent({
@@ -34,6 +36,7 @@ export default defineComponent({
   directives: { customClickAway: ClickOutsideDirective },
   props: {
     disabled: Boolean,
+    activeType: String as PropType<ColorPickerType>,
     useGradient: {
       type: Boolean,
       default: true,
@@ -80,7 +83,10 @@ export default defineComponent({
   },
   emits: ["update:single", "update:gradient", "change"],
   setup(props, { emit }) {
-    const isGradientActive = ref(props.useStyle === "gradient");
+    const isGradientActive = ref(
+      props.useStyle === "gradient" ||
+        (props.useStyle !== "single" && props.activeType === "gradient")
+    );
     const isAdvanceMode = ref(false);
 
     const colorData = reactive<{
@@ -149,6 +155,14 @@ export default defineComponent({
       () => props.gradient,
       (data) => {
         colorData.gradient = data;
+      }
+    );
+
+    watch(
+      () => props.activeType,
+      (value) => {
+        isGradientActive.value =
+          props.useStyle !== "single" && props.activeType === "gradient";
       }
     );
 

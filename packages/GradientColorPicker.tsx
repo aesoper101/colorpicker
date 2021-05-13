@@ -183,6 +183,11 @@ export default defineComponent({
       updateColor(color);
     };
 
+    const onDegreeChange = (angle: number) => {
+      colorData.degree = angle;
+      doChange();
+    };
+
     const getColor = computed(() => {
       return colorData.isStartColorActive
         ? colorData.startColor
@@ -377,9 +382,7 @@ export default defineComponent({
                 <Angle
                   angle={colorData.degree}
                   size={40}
-                  onChange={(angle) => {
-                    colorData.degree = angle;
-                  }}
+                  onChange={onDegreeChange}
                 />
               </div>
             </div>

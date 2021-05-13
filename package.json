@@ -1,6 +1,6 @@
 {
   "name": "vue3-colorpicker-pro",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "main": "dist/colorpicker.es.js",
   "module": "dist/colorpicker.es.js",
