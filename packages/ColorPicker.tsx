@@ -166,6 +166,21 @@ export default defineComponent({
       }
     );
 
+    const onClick = (opName: string) => {
+      isGradientActive.value = opName === "Gradient";
+      if (isGradientActive.value) {
+        emit("change", {
+          isGradient: true,
+          gradient: colorData.gradient,
+        });
+      } else {
+        emit("change", {
+          isGradient: false,
+          single: colorData.single,
+        });
+      }
+    };
+
     // 开关
     const renderTab = () => {
       if (props.useStyle === "both" && !isAdvanceMode.value)
@@ -179,7 +194,7 @@ export default defineComponent({
                     "vc-btn-active": !isGradientActive.value,
                   },
                 ]}
-                onClick={() => (isGradientActive.value = false)}
+                onClick={() => onClick("single")}
               >
                 <button>
                   <div class="vc-btn__content">纯色</div>
@@ -192,7 +207,7 @@ export default defineComponent({
                     "vc-btn-active": isGradientActive.value,
                   },
                 ]}
-                onClick={() => (isGradientActive.value = true)}
+                onClick={() => onClick("Gradient")}
               >
                 <button>
                   <div class="vc-btn__content">渐变</div>
