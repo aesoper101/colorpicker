@@ -85,7 +85,7 @@ export default defineComponent({
       return (
         <div class="vc-display">
           <div class="vc-current-color vc-transparent">
-            <div class="color-cube" style={currentColorStyle.value}></div>
+            <div class="color-cube" style={currentColorStyle.value} />
           </div>
           <div class="vc-color-input">
             <input value={currentColorHex.value} onBlur={(v) => onHexBlur(v)} />

@@ -138,7 +138,7 @@ export default defineComponent({
                 left: pointerPosition.left + "px",
               }}
             >
-              <div class="vc-hue-picker"></div>
+              <div class="vc-hue-picker" />
             </div>
           </div>
         </div>

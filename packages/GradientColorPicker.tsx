@@ -353,7 +353,7 @@ export default defineComponent({
                   ref={startGradientRef}
                   style={startColorStyle.value}
                 >
-                  <span class="vc-gradient__stop--inner"></span>
+                  <span class="vc-gradient__stop--inner" />
                 </div>
                 <div
                   class={[
@@ -365,7 +365,7 @@ export default defineComponent({
                   ref={stopGradientRef}
                   style={endColorStyle.value}
                 >
-                  <span class="vc-gradient__stop--inner"></span>
+                  <span class="vc-gradient__stop--inner" />
                 </div>
               </div>
             </div>
@@ -396,7 +396,7 @@ export default defineComponent({
         <div class="vc-gradient-picker">
           <div class="vc-gradient-picker__header" v-show={isAdvanceMode.value}>
             <span style="cursor: pointer;" onClick={onGoBack}>
-              <div class="back"></div>
+              <div class="back" />
               <span>返回</span>
             </span>
           </div>

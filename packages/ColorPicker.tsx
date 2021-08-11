@@ -219,7 +219,7 @@ export default defineComponent({
                   width: `50%`,
                   left: `calc(${isGradientActive.value ? 50 : 0}%)`,
                 }}
-              ></div>
+              />
             </div>
           </div>
         );
@@ -344,7 +344,7 @@ export default defineComponent({
             ]}
             onClick={onShowPopup}
           >
-            <div class="vc-current-color__inner" style={getBgColor.value}></div>
+            <div class="vc-current-color__inner" style={getBgColor.value} />
           </div>
 
           {renderTeleport()}

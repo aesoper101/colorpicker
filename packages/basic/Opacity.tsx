@@ -140,7 +140,7 @@ export default defineComponent({
                 left: pointerPosition.left + "px",
               }}
             >
-              <div class="vc-alpha-picker"></div>
+              <div class="vc-alpha-picker" />
             </div>
           </div>
         </div>

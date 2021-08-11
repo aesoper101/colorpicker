@@ -105,7 +105,7 @@ export default defineComponent({
         <div class="vc-single-picker">
           <div class="vc-single-picker__header" v-show={isAdvanceMode.value}>
             <span style="cursor: pointer;" onClick={onGoBack}>
-              <div class="back"></div>
+              <div class="back" />
               <span>返回</span>
             </span>
           </div>

@@ -148,8 +148,8 @@ export default defineComponent({
             style={{ backgroundColor: background.value }}
             onClick={onClick}
           >
-            <div class="vc-saturation__white"></div>
-            <div class="vc-saturation__black"></div>
+            <div class="vc-saturation__white" />
+            <div class="vc-saturation__black" />
             <div
               class="vc-saturation__pointer"
               ref={pointerEle}
@@ -158,7 +158,7 @@ export default defineComponent({
                 left: pointerPosition.left + "px",
               }}
             >
-              <div></div>
+              <div />
             </div>
           </div>
         </div>
