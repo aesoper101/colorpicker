@@ -1,39 +1,16 @@
-import {
-  computed,
-  defineComponent,
-  h,
-  PropType,
-  reactive,
-  ref,
-  Teleport,
-  watch,
-} from "vue";
+import { computed, defineComponent, h, PropType, reactive, ref, Teleport, watch } from "vue";
 
 import SingleColorPicker, { SingleColorPickerProps } from "./SingleColorPicker";
-import GradientColorPicker, {
-  GradientColorPickerProps,
-} from "./GradientColorPicker";
+import GradientColorPicker, { GradientColorPickerProps } from "./GradientColorPicker";
 import tinycolor from "tinycolor2";
 import { createPopper, Instance } from "@popperjs/core";
 
-import { ClickOutsideDirective } from "vue3-normal-directive";
 import { Placement } from "@popperjs/core/lib/enums";
-
-export interface ColorPickerChangeEvent {
-  isGradient: boolean;
-  single?: SingleColorPickerProps;
-  gradient?: GradientColorPickerProps;
-}
-
-export type ColorPickerStyle = "single" | "gradient" | "both";
-
-export type ColorPickerType = "single" | "gradient";
-
-export type PopupShape = "round" | "square";
+import { onClickOutside } from "@vueuse/core";
+import { ColorPickerStyle, ColorPickerType, PopupShape } from "../type";
 
 export default defineComponent({
   name: "ColorPicker",
-  directives: { customClickAway: ClickOutsideDirective },
   props: {
     disabled: Boolean,
     activeType: String as PropType<ColorPickerType>,
@@ -135,9 +112,7 @@ export default defineComponent({
       }
 
       const opacity =
-        singleData && singleData.opacity
-          ? singleData.opacity / 100
-          : singleData.opacity;
+        singleData && singleData.opacity ? singleData.opacity / 100 : singleData.opacity;
       return {
         background: singleData.color,
         opacity: opacity,
@@ -160,9 +135,8 @@ export default defineComponent({
 
     watch(
       () => props.activeType,
-      (value) => {
-        isGradientActive.value =
-          props.useStyle !== "single" && props.activeType === "gradient";
+      () => {
+        isGradientActive.value = props.useStyle !== "single" && props.activeType === "gradient";
       }
     );
 
@@ -315,14 +289,11 @@ export default defineComponent({
       }
     };
 
+    onClickOutside(pickerPopupRef, () => onHidePopup());
+
     const renderTeleport = () => {
       const teleportBody = (
-        <div
-          class="vc-popup"
-          style={{ zIndex: props.zIndex }}
-          ref={pickerPopupRef}
-          v-custom-click-away={onHidePopup}
-        >
+        <div class="vc-popup" style={{ zIndex: props.zIndex }} ref={pickerPopupRef}>
           {showPopup.value && renderPicker()}
         </div>
       );

@@ -4,6 +4,7 @@ type EventHandler = (...args: any[]) => void;
 
 declare module "vue" {
   interface ComponentCustomProps {
+    id?: string;
     role?: string;
     tabindex?: number;
     // should be removed after Vue supported component events typing
@@ -37,9 +38,22 @@ declare module "vue" {
     onTouchstart?: EventHandler;
     onTouchcancel?: EventHandler;
     onSelectSearch?: EventHandler;
+    onContextmenu?: EventHandler;
 
-    onModeChange?: EventHandler;
-    onColorChange?: EventHandler;
-    onOpacityChange?: EventHandler;
+    onHide?: EventHandler;
+
+    onActivated?: EventHandler;
+    onDeactivated?: EventHandler;
+    onDragStart?: EventHandler;
+    onDragEnd?: EventHandler;
+    onResizeStart?: EventHandler;
+    onResizeEnd?: EventHandler;
+    onDragging?: EventHandler;
+    onResizing?: EventHandler;
+    onDrop?: EventHandler;
+    onDragover?: EventHandler;
+    onDragleave?: EventHandler;
+
+    onSave?: EventHandler;
   }
 }

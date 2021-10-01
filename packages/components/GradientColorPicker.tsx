@@ -9,15 +9,15 @@ import {
   toRaw,
   watch,
 } from "vue";
-import Compact from "./basic/Compact";
-import Saturation from "./basic/Saturation";
-import Hue from "./basic/Hue";
-import Opacity from "./basic/Opacity";
-import Display from "./basic/Display";
+import Compact from "../basic/Compact";
+import Saturation from "../basic/Saturation";
+import Hue from "../basic/Hue";
+import Opacity from "../basic/Opacity";
+import Display from "../basic/Display";
 import tinycolor from "tinycolor2";
 
 import { Angle } from "vue3-angle";
-import "vue3-angle/style/bundle.css";
+import "vue3-angle/style.css";
 import { DOMUtils } from "@aesoper/normal-utils";
 
 const gradientColorPickerProps = {
@@ -46,6 +46,9 @@ const gradientColorPickerProps = {
   degree: {
     type: Number,
     default: 90,
+    validator: (value: number) => {
+      return value >= 0 && value <= 360;
+    },
   },
   isStartColorActive: {
     type: Boolean,
@@ -62,9 +65,7 @@ const gradientColorPickerProps = {
   opacityDisabled: Boolean,
 };
 
-export type GradientColorPickerProps = Partial<
-  ExtractPropTypes<typeof gradientColorPickerProps>
->;
+export type GradientColorPickerProps = Partial<ExtractPropTypes<typeof gradientColorPickerProps>>;
 
 export default defineComponent({
   name: "GradientColorPicker",
@@ -189,15 +190,11 @@ export default defineComponent({
     };
 
     const getColor = computed(() => {
-      return colorData.isStartColorActive
-        ? colorData.startColor
-        : colorData.endColor;
+      return colorData.isStartColorActive ? colorData.startColor : colorData.endColor;
     });
 
     const getOpacity = computed(() => {
-      return colorData.isStartColorActive
-        ? colorData.startColorOpacity
-        : colorData.endColorOpacity;
+      return colorData.isStartColorActive ? colorData.startColorOpacity : colorData.endColorOpacity;
     });
 
     const getHue = computed(() => {
@@ -219,10 +216,7 @@ export default defineComponent({
 
         let left = evt.clientX - rect.left;
         left = Math.max(startGradientRef.value.offsetWidth / 2, left);
-        left = Math.min(
-          left,
-          rect.width - startGradientRef.value.offsetWidth / 2
-        );
+        left = Math.min(left, rect.width - startGradientRef.value.offsetWidth / 2);
 
         colorData.startColorLeft = Math.round(
           ((left - startGradientRef.value.offsetWidth / 2) /
@@ -242,10 +236,7 @@ export default defineComponent({
 
         let left = evt.clientX - rect.left;
         left = Math.max(stopGradientRef.value.offsetWidth / 2, left);
-        left = Math.min(
-          left,
-          rect.width - stopGradientRef.value.offsetWidth / 2
-        );
+        left = Math.min(left, rect.width - stopGradientRef.value.offsetWidth / 2);
 
         colorData.endColorLeft = Math.round(
           ((left - stopGradientRef.value.offsetWidth / 2) /
@@ -340,14 +331,13 @@ export default defineComponent({
         <div class="vc-gradient-picker__body">
           <div class="vc-color-range" ref={colorRangeRef}>
             <div class="vc-color-range__container">
-              <div class="vc-background" style={gradientBg.value}></div>
+              <div class="vc-background" style={gradientBg.value} />
               <div class="vc-gradient__stop__container">
                 <div
                   class={[
                     "vc-gradient__stop",
                     {
-                      "vc-gradient__stop--current":
-                        colorData.isStartColorActive,
+                      "vc-gradient__stop--current": colorData.isStartColorActive,
                     },
                   ]}
                   ref={startGradientRef}
@@ -372,15 +362,12 @@ export default defineComponent({
           </div>
           <div class="vc-picker-degree-input vc-degree-input">
             <div class="vc-degree-input__control">
-              <input
-                value={colorData.degree + "°"}
-                onBlur={(v) => onDegreeBlur(v)}
-              />
+              <input value={colorData.degree + "°"} onBlur={(v) => onDegreeBlur(v)} />
             </div>
             <div class="vc-degree-input__panel">
               <div class="vc-degree-input__disk">
                 <Angle
-                  angle={colorData.degree}
+                  v-models={[[colorData.degree, "angle"]]}
                   size={40}
                   onChange={onDegreeChange}
                 />
@@ -413,18 +400,14 @@ export default defineComponent({
           <Hue hue={getHue.value} onChange={onHueChange} />
 
           {!props.opacityDisabled && (
-            <Opacity
-              opacity={getOpacity.value}
-              color={getColor.value}
-              onChange={onUpdateOpacity}
-            />
+            <Opacity opacity={getOpacity.value} color={getColor.value} onChange={onUpdateOpacity} />
           )}
           <Display
             opacityDisabled={props.opacityDisabled}
             color={getColor.value}
             opacity={getOpacity.value}
-            onColorChange={(color) => updateColor(color)}
-            onOpacityChange={(opacity) => onUpdateOpacity(opacity)}
+            onColorChange={(color: string) => updateColor(color)}
+            onOpacityChange={(opacity: number) => onUpdateOpacity(opacity)}
           />
         </div>
       );

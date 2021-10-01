@@ -1,16 +1,9 @@
-import {
-  computed,
-  defineComponent,
-  ExtractPropTypes,
-  reactive,
-  ref,
-  toRaw,
-} from "vue";
-import Compact from "./basic/Compact";
-import Saturation from "./basic/Saturation";
-import Hue from "./basic/Hue";
-import Display from "./basic/Display";
-import Opacity from "./basic/Opacity";
+import { computed, defineComponent, ExtractPropTypes, reactive, ref, toRaw } from "vue";
+import Compact from "../basic/Compact";
+import Saturation from "../basic/Saturation";
+import Hue from "../basic/Hue";
+import Display from "../basic/Display";
+import Opacity from "../basic/Opacity";
 import tinycolor from "tinycolor2";
 
 const singleColorPickerProps = {
@@ -22,9 +15,7 @@ const singleColorPickerProps = {
   opacityDisabled: Boolean,
 };
 
-export type SingleColorPickerProps = Partial<
-  ExtractPropTypes<typeof singleColorPickerProps>
->;
+export type SingleColorPickerProps = Partial<ExtractPropTypes<typeof singleColorPickerProps>>;
 
 export default defineComponent({
   name: "SingleColorPicker",
@@ -120,11 +111,7 @@ export default defineComponent({
           <Hue hue={getHue.value} onChange={onHueChange} />
 
           {!props.opacityDisabled && (
-            <Opacity
-              color={colorData.color}
-              opacity={colorData.opacity}
-              onChange={updateOpacity}
-            />
+            <Opacity color={colorData.color} opacity={colorData.opacity} onChange={updateOpacity} />
           )}
           <Display
             opacityDisabled={props.opacityDisabled}
