@@ -7,7 +7,10 @@ import Opacity from "../basic/Opacity";
 import tinycolor from "tinycolor2";
 
 const singleColorPickerProps = {
-  color: String,
+  color: {
+    type: String,
+    default: "#000000",
+  },
   opacity: {
     type: Number,
     default: 100,

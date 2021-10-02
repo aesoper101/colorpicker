@@ -3,8 +3,8 @@ import { GradientColorPickerProps } from "./components/GradientColorPicker";
 
 export interface ColorPickerChangeEvent {
   isGradient: boolean;
-  single?: SingleColorPickerProps;
-  gradient?: GradientColorPickerProps;
+  single?: Omit<SingleColorPickerProps, "opacityDisabled">;
+  gradient?: Omit<GradientColorPickerProps, "opacityDisabled">;
 }
 
 export type ColorPickerStyle = "single" | "gradient" | "both";
