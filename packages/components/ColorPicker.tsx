@@ -228,7 +228,7 @@ export default defineComponent({
 
     const renderPicker = () => {
       return (
-        <div class="vc-colorpicker">
+        <div class="vc-colorpicker" onMousedown={(evt) => evt.stopPropagation()}>
           <div class="vc-colorpicker--container">
             {renderTab()}
             {isGradientActive.value && renderGradientPicker()}
@@ -303,23 +303,20 @@ export default defineComponent({
 
     const renderPopup = () => {
       return (
-        <>
-          <div
-            ref={pickerRef}
-            class={[
-              "vc-current-color",
-              "vc-transparent",
-              {
-                round: props.popupShape === "round",
-              },
-            ]}
-            onClick={onShowPopup}
-          >
-            <div class="vc-current-color__inner" style={getBgColor.value} />
-          </div>
-
+        <div
+          ref={pickerRef}
+          class={[
+            "vc-current-color",
+            "vc-transparent",
+            {
+              round: props.popupShape === "round",
+            },
+          ]}
+          onClick={onShowPopup}
+        >
+          <div class="vc-current-color__inner" style={getBgColor.value} />
           {renderTeleport()}
-        </>
+        </div>
       );
     };
 

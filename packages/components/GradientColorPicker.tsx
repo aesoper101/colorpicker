@@ -342,6 +342,7 @@ export default defineComponent({
                   ]}
                   ref={startGradientRef}
                   style={startColorStyle.value}
+                  title={"开始"}
                 >
                   <span class="vc-gradient__stop--inner" />
                 </div>
@@ -354,6 +355,7 @@ export default defineComponent({
                   ]}
                   ref={stopGradientRef}
                   style={endColorStyle.value}
+                  title={"结束"}
                 >
                   <span class="vc-gradient__stop--inner" />
                 </div>
